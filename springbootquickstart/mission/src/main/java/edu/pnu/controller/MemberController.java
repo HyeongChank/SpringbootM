@@ -36,10 +36,10 @@ public class MemberController {
 		return memberservice.getMembers();
 	}
 	
-	@GetMapping("/removeMember/{id}")
+	@GetMapping("/deleteMember/{id}")
 	public Member removeMember(@PathVariable Integer id){
-		System.out.println("removeMember");	
-		return memberservice.removeMember(id);
+		System.out.println("deleteMember");	
+		return memberservice.deleteMember(id);
 	}
 	
 	@GetMapping("/searchMember/{id}")

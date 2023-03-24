@@ -14,13 +14,20 @@ public class MemberService {
 
 	private static Member mb = new Member();
 	public MemberService() {
-		for(int i=1; i<20;i++) {
+		String [] list = {"jack","kal","khc","cowor"};
+		int i=1;
+		while(true) {
 //regidate에 new Date() 를 받은 거 사용
-			ls.add(new Member(i,"이름","1234"));
-
+			for(int j=0; j<list.length;j++) {
+				ls.add(new Member(i,list[j],"1234"));
+				i++;
+			}
+			System.out.println(ls);
+			break;
 		}		
 	}
 	public List<Member> getMembers(){
+		
 		return ls;
 	}
 	public List<Member> addMember() {
@@ -43,13 +50,15 @@ public class MemberService {
 		}
 		return null;
 	}
-	public Member removeMember(int id) {
+	public Member deleteMember(int id) {
 		for(int i=0; i<ls.size();i++) {
 			if(ls.get(i).getId()==id) {
 				ls.remove(i);
-				System.out.println("id " + i + "번 삭제");
+				System.out.println("id " + id + "번 삭제");
+				break;
 			}
 		}
+		System.out.println("id " + id + "번 없음");
 		return null;
 	}
 	public Member updateMember(int id) {
