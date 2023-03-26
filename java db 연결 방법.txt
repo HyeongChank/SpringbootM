@@ -1,0 +1,13 @@
+java db 연결 방법
+
+1. jdk 설치, ide(eclipse) 설치
+
+2. mysql 설치, jdbc 드라이버(connector jar 파일) 설치
+    - mysql 계정 생성 : workbench mysql 로그인 후 - administration - users and priviledge - add account - administrative roles - dba
+   - cmd 에서 mysql -u root -p 로 로그인 후 - create~, grant ~ 하면 됨
+
+3. 프로젝트 build path - configure path - libraries - modulepath - add jars or add external jars - jar 파일 선택 추가
+
+4. Class.forName("com.mysql.cj.jdbc.Driver");
+   Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "username", "password");
+   연결 여부는 catch(Exceptione e) e.printstacktrace를 통한 오류 확인으로 알 수 있음
