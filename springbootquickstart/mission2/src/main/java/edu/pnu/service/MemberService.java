@@ -21,8 +21,8 @@ public class MemberService {
 		return null;
 	}
 	public Member readMember(){
-		memberdao.readMember();
-		return null;
+		
+		return memberdao.readMember();
 	}
 	public Member deleteMember(String pass) {
 		memberdao.deleteMember(pass);
@@ -33,8 +33,8 @@ public class MemberService {
 		return null;
 	}
 	public Member showallMember() {
-		memberdao.showallMember();
 		
-		return null;
+		
+		return memberdao.showallMember();
 	}
 }
