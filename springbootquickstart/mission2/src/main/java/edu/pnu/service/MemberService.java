@@ -32,9 +32,9 @@ public class MemberService {
 		memberdao.updateMember(pass, name);
 		return null;
 	}
-	public Member showallMember() {
-		
-		
+	public List<Member> showallMember() {
+
 		return memberdao.showallMember();
 	}
+	
 }

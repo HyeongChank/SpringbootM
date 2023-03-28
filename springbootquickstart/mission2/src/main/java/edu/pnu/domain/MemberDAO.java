@@ -29,16 +29,21 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	public Member showallMember() {
+	public List<Member> showallMember() {
 		
-		Member mb = new Member();
+		
 		String query = "select * from member";
 		try {
 			psmt = con.prepareStatement(query);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
-				mb.setPass(rs.getString(1));
-				mb.setName(rs.getString(2));
+			while(rs.next()) {
+				Member mb = new Member();
+				mb.setId(rs.getInt("id"));
+				mb.setPass(rs.getString("pass"));
+				mb.setName(rs.getString("name"));
+				mb.setRegidate(rs.getDate("regidate"));
+
+				ls.add(mb);
 			}
 		}
 		catch(Exception e) {
@@ -46,7 +51,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		System.out.println(rs);
-		return mb;
+		return ls;
 	}
 	
 	public Member readMember() {
