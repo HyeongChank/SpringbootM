@@ -1,23 +1,45 @@
 package edu.pnu.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import edu.pnu.dao.MemberDao;
+import edu.pnu.dao.MemberDaoH2Impl;
+import edu.pnu.dao.MemberDaoListImpl;
+import edu.pnu.domain.MemberVO;
 
-import edu.pnu.domain.Member;
-import edu.pnu.domain.MemberDAO;
-@Service
 public class MemberService {
-	static Member mb = new Member();
-	static MemberDAO md = new MemberDAO();
-	static List<Member> ls = new ArrayList<>();
-
-	public MemberService() {
+	private MemberDao md;
+//	MemberDaoH2Impl md ;
+//	MemberDaoListImpl md;
+//	MemberVO md;
+	
 		
+	public MemberService() {
+//		md = new MemberDaoH2Impl();
+		md = new MemberDaoListImpl();
 	}
-	public List<Member> selectMember() {
-		System.out.println("service 페이지");
-		return md.selectMember();
+	public List<MemberVO> getMembers() {
+		// TODO Auto-generated method stub
+		return md.getMembers();
 	}
+
+	public MemberVO getMember(Integer id) {
+		// TODO Auto-generated method stub
+		return md.getMember(id);
+	}
+
+	public MemberVO getMemberjson(MemberVO mv) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public MemberVO deleteMember(Integer id) {
+		// TODO Auto-generated method stub
+		return md.deleteMember(id);
+	}
+	public MemberVO addMember(String pass, String name) {
+		// TODO Auto-generated method stub
+		return md.addMember(pass, name);
+	}
+
+	
 }

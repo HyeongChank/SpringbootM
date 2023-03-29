@@ -1,39 +1,30 @@
 package edu.pnu.domain;
 
-
 import java.util.Date;
 
+public class MemberVO {
+    private int id;
+    private String pass;
+    private String name;
+    private Date regidate;
 
-public class Member {
-	private String id;
-	private String pass;
-	private String name;
-	private Date regidate;
-	
-	public Member() {
-		
+    public MemberVO() {
 	}
 
-	public Member(String id, String pass, String name, Date regidate) {
-		super();
+	public MemberVO(int id, String pass, String name, Date regidate) {
 		this.id = id;
 		this.pass = pass;
 		this.name = name;
 		this.regidate = regidate;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		// TODO Auto-generated method stub
+	public void setId(int id) {
 		this.id = id;
-		
 	}
-//	public void setId(String id) {
-//		this.id = id;
-//	}
 
 	public String getPass() {
 		return pass;
@@ -61,11 +52,6 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
-	}
-
-
-
-
-	
+		return "MemberVO [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
+	}    
 }
