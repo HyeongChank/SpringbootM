@@ -30,6 +30,7 @@ public class MemberDaoH2Impl implements MemberDao {
         }
         catch (Exception e) {            
             e.printStackTrace();
+            String errMsg = e.getMessage();
         }
 	}
 	
@@ -49,6 +50,7 @@ public class MemberDaoH2Impl implements MemberDao {
 				ls.add(mv);
 			}
 			System.out.println(ls);
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
