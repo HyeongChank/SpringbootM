@@ -47,7 +47,6 @@ public class LogDBRegit implements logDao {
 		String string = list[1]; //오류메시지
 		MemberVO mv = (MemberVO) m.get(method); //MemberVO
 		
-		System.out.println("오류발생" + mv);
 		Boolean success = false;
 		System.out.println();
 		int result =0;
@@ -58,6 +57,7 @@ public class LogDBRegit implements logDao {
 			psmt.setString(2, string);
 			psmt.setBoolean(3, success);
 			result = psmt.executeUpdate();
+			System.out.println("db log 등록 완료(오류)");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class LogDBRegit implements logDao {
 		try {
 			Class.forName("org.h2.Driver");
 			con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/springboot", "sa", "");
-			System.out.println("드라이버 연결 성공");
+			System.out.println("드라이버 연결 성공 log ==");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -86,7 +86,8 @@ public class LogDBRegit implements logDao {
 			psmt.setString(2, string);
 			psmt.setBoolean(3, success);
 			result = psmt.executeUpdate();
-			System.out.println("dblog 등록 성공");
+			System.out.println("db log 등록 완료");
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();

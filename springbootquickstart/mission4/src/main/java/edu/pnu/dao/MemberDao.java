@@ -16,9 +16,6 @@ import edu.pnu.dao.LogDBRegit;
 import edu.pnu.dao.logDao;
 public class MemberDao {
 	public Connection con;
-	//statement, preparedstatement 차이 : psmt는 쿼리 파이딩을 위해 '?' 사용 가능,
-	// SQL Injection 공격으로부터 보호 가능 -> psmt쓰면 안전 효율
-	
 	public Statement stmt;
 	public PreparedStatement psmt;
 	public ResultSet rs;
@@ -61,26 +58,37 @@ public class MemberDao {
 	}
 	public MemberVO getMember(Integer id) {
 		MemberService ms = new MemberService();
-		String query = "select * from members where id =?";
+		String query = "select * from member where id =?";
 		MemberVO mv = new MemberVO();
 		logDao ed = new LogDBRegit();
+		String outp = "";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, id);
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				
 				mv.setId(rs.getInt("id"));
 				mv.setPass(rs.getString("pass"));
 				mv.setName(rs.getString("name"));
 				mv.setDate(rs.getDate("regidate"));
-				System.out.println("id : " + rs.getInt("id") + "pass : " + rs.getString("pass") + "name : " + rs.getString("name") + "regidate : " + rs.getDate("regidate"));
+				outp = "id : " + rs.getInt("id") + "pass : " + rs.getString("pass") + "name : " + rs.getString("name") + "regidate : " + rs.getDate("regidate");
+				System.out.println(outp);
 			}
-			System.out.println("성공중");
-			ed.msg(query, mv);
+			if(mv.getPass() == null) {
+				String errMsg = "잘못된 id";
+				System.out.println("잘못된 id");
+				String [] list = {query, errMsg};
+				m.put(query, mv);
+				ed.msg(list, m);
+			}
+			else {
+				m.put(outp, mv); //올바른 id logdao <String, map>으로 바꾸면 됨
+				ed.msg(query, mv);
+			}
 		}
 		catch(Exception e) {
+		
 			String errMsg = e.getMessage();
 			System.out.println("실패");
 			String [] list = {query, errMsg};
@@ -90,6 +98,7 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
 	
 	
 	
